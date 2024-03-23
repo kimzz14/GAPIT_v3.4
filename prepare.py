@@ -54,7 +54,7 @@ command_GAPIT = """options(repos = c(CRAN = "https://cloud.r-project.org/"))
 source("../../GAPIT_v3.4/gapit_functions.txt")
 myY <- read.table("phenotype.txt", head=TRUE)
 myG <- read.table("genotype.hmp.txt", head=FALSE)
-myGAPIT <- GAPIT(Y=myY, G=myG, PCA.total=3, model=c("GLM", "MLM", "CMLM", "MLMM","SUPER", "FarmCPU", "gBLUP", "cBLUP", "sBLUP", "Blink"),Multiple_analysis=TRUE, Inter.Plot=TRUE)
+myGAPIT <- GAPIT(Y=myY, G=myG, PCA.total=3, model=c("Blink", "GLM", "MLM", "CMLM", "MLMM","SUPER", "FarmCPU", "gBLUP", "cBLUP", "sBLUP"),Multiple_analysis=TRUE, Inter.Plot=TRUE)
 q()
 """
 
