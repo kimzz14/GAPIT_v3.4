@@ -34,21 +34,18 @@ class GenotypeTab:
     def __init__(self, fileName):
         fin = open(fileName)
         legend_LIST = fin.readline().rstrip('\n').split('\t')
-        fields_LIST = []
-        for line in fin:
-            data_LIST = line.rstrip('\n').split('\t')
-            fields = {key:value for key, value in zip(legend_LIST, data_LIST)}
-            fields_LIST += [fields]
-        fin.close()
-        self.fields_LIST = fields_LIST
+        self.fileName = fileName
+        self.legend_LIST = legend_LIST
         self.legend_DICT = {legend:0 for legend in legend_LIST}
     def makeFile(self, fileName, legend_LIST):
+        idx_LIST = [self.legend_LIST.index(legend) for legend in legend_LIST]
+
+        fin = open(self.fileName)
         fout = open(fileName, 'w')
         fout.write('\t'.join(legend_LIST) + '\n')
-        for fields in self.fields_LIST:
-            context = []
-            for legend in legend_LIST:
-                context += [fields[legend]]
+        for line in fin:
+            data_LIST = line.rstrip('\n').split('\t')
+            context = [data_LIST[idx] for idx in idx_LIST]
             fout.write('\t'.join(context) + '\n')
         fout.close()
 
