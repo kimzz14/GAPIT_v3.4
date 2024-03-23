@@ -41,6 +41,7 @@ class GenotypeTab:
         idx_LIST = [self.legend_LIST.index(legend) for legend in legend_LIST]
 
         fin = open(self.fileName)
+        fin.readline()
         fout = open(fileName, 'w')
         fout.write('\t'.join(legend_LIST) + '\n')
         for line in fin:
